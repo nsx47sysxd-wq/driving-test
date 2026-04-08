@@ -74,11 +74,16 @@ if submit:
         age_mitigation = max(0, (year - 17) * 0.5)
         
         # Final Formula
-        base_prob = 98
+        base_prob = 80
         total_penalty = max(0, (loc_penalty + hour_penalty) - age_mitigation)
         final_prob = round(base_prob - total_penalty, 2)
 
         # 4. Display Result
         st.divider()
-        st.success(f"### הסיכוי שלך הוא: {final_prob}%")
+        if final_prob > 70:
+            st.success(f"### הסיכוי שלך הוא: {final_prob}%")
+            st.balloons()
+        else:
+            st.success(f"### הסיכוי שלך הוא: {final_prob}%")
         st.info(f"Location: {place} | Scheduled Time: {test_hour.strftime('%H:%M')}")
+        st.title("🚗 יהודה שריפי: מורה נהיגה: אשקלון והסביבה: 050-2505215")
