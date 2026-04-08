@@ -5,6 +5,8 @@ from datetime import datetime, time
 st.set_page_config(page_title="First Test Probability", layout="centered")
 
 st.title("🚗 הטסט הראשון שלי")
+st.info("🚗 יהודה שריפי: מורה נהיגה: אשקלון והסביבה: 050-2505215")
+st.divider()
 
 # 2. Input Fields
 with st.form("test_calculator"):
@@ -74,7 +76,7 @@ if submit:
         age_mitigation = max(0, (year - 17) * 0.5)
         
         # Final Formula
-        base_prob = 80
+        base_prob = 90
         total_penalty = max(0, (loc_penalty + hour_penalty) - age_mitigation)
         final_prob = round(base_prob - total_penalty, 2)
 
@@ -86,4 +88,4 @@ if submit:
         else:
             st.success(f"### הסיכוי שלך הוא: {final_prob}%")
         st.info(f"Location: {place} | Scheduled Time: {test_hour.strftime('%H:%M')}")
-        st.title("🚗 יהודה שריפי: מורה נהיגה: אשקלון והסביבה: 050-2505215")
+        
