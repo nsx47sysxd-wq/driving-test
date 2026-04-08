@@ -5,7 +5,8 @@ from datetime import datetime, time
 st.set_page_config(page_title="First Test Probability", layout="centered")
 
 st.title("🚗 הטסט הראשון שלי")
-st.write("🚗  050-2505215 :יהודה שריפי - מורה נהיגה - אשקלון והסביבה")
+st.write("050-2505215 :יהודה שריפי - מורה נהיגה")
+st.write("אשקלון והסביבה")
 
 st.divider()
 
