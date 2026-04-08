@@ -21,7 +21,9 @@ with st.form("test_calculator"):
         "המרכז", "ירושלים", "השפלה (אשקלון ואשדוד)", 
         "באר שבע והדרום", "הערבה", "אילת"
     ]
-    place = st.selectbox("Location", locations)
+    place = st.selectbox("מיקום", locations)
+
+    x_date = st.date_input("תאריך טסט פנימי")
     
     # Date and Hour
     test_date = st.date_input("תאריך הטסט")
@@ -56,21 +58,23 @@ if submit:
         loc_penalty = location_penalties.get(place, 5)
 
         # B. Hour Penalty (Rush hour peaks)
-        if 7 <= test_hour.hour <= 9:
+        if 7 <= test_hour.hour <= 8:
+            hour_penalty = 1
+        elif 9<= test_hour.hour <= 12:
             hour_penalty = 10
         elif 12 <= test_hour.hour <= 14:
             hour_penalty = 5
         elif 15 <= test_hour.hour <= 16:
-            hour_penalty = 8
+            hour_penalty = 3
         else:
-            hour_penalty = 2
+            hour_penalty = 8
 
         # C. Age Factor (Penalty reduces with age)
         # As age increases, we subtract less from the pass rate
         age_mitigation = max(0, (year - 17) * 0.5)
         
         # Final Formula
-        base_prob = 75
+        base_prob = 98
         total_penalty = max(0, (loc_penalty + hour_penalty) - age_mitigation)
         final_prob = round(base_prob - total_penalty, 2)
 
